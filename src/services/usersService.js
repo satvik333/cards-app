@@ -28,3 +28,11 @@ export async function loginUser(username, password) {
 
   return await makeApiCall(endpoint, method, body);
 }
+
+export async function registerUser(username, email,password) {
+  const endpoint = '/registeruser';
+  const method = 'POST';
+  const body = { username, email, password };
+
+  return await makeApiCall(endpoint, method, body);
+}

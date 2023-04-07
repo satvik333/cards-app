@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './loginForm.css';
-import { loginUser } from './services/loginService';
+import { loginUser } from '../services/usersService';
+import { Link } from 'react-router-dom';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -17,6 +18,7 @@ function LoginForm() {
   const handleSubmit = async event => {
     event.preventDefault();
     await loginUser(username, password);
+    window.location.href = '/dashboard'
   };
 
   return (
@@ -32,6 +34,8 @@ function LoginForm() {
       </label>
       <br />
       <button type="submit">Login</button>
+      <br/>
+      <Link to="/register">Don't have Account? Register Here.</Link>
     </form>
   );
 }
