@@ -29,10 +29,18 @@ export async function loginUser(username, password) {
   return await makeApiCall(endpoint, method, body);
 }
 
-export async function registerUser(username, email,password) {
+export async function registerUser(username, email, password) {
   const endpoint = '/registeruser';
   const method = 'POST';
   const body = { username, email, password };
+
+  return await makeApiCall(endpoint, method, body);
+}
+
+export async function addNewCard(payload) {
+  const endpoint = '/addcard';
+  const method = 'POST';
+  const body = payload;
 
   return await makeApiCall(endpoint, method, body);
 }
