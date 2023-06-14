@@ -7,6 +7,7 @@ function AddCard() {
   const [cardNumber, setCardNumber] = useState('');
   const [cardHolder, setCardHolder] = useState('');
   const [cardExpiration, setCardExpiration] = useState('');
+  const [cardCvv, setCardCvv] = useState('');
 
   const handleCardTitleChange = (event) => {
     setCardTitle(event.target.value);
@@ -24,18 +25,27 @@ function AddCard() {
     setCardExpiration(event.target.value);
   };
 
+  const handleCardCvvChange = (event) => {
+    setCardCvv(event.target.value);
+  };
+
   const handleSaveCardClick = async event  => {
     event.preventDefault();
 
-    const isAnyFieldEmpty = [cardTitle, cardNumber, cardHolder, cardExpiration].some(field => !field);
+    const isAnyFieldEmpty = [cardTitle, cardNumber, cardHolder, cardExpiration, cardCvv].some(field => !field);
     if (isAnyFieldEmpty) {
       alert('Please fill all the details.');
       return;
     }
     let payload = {
-        cardTitle, cardNumber, cardHolder, cardExpiration
+        cardTitle, cardNumber, cardHolder, cardExpiration, cardCvv
     };
     await addNewCard(payload);
+    setCardTitle(' ');
+    setCardNumber(' ');
+    setCardHolder(' ');
+    setCardExpiration(' ');
+    setCardCvv(' ');
   };
 
   return (
@@ -48,6 +58,8 @@ function AddCard() {
         <input type="number" value={cardNumber} onChange={handleCardNumberChange} required />
         <label>Card Holder Name:</label>
         <input type="text" value={cardHolder} onChange={handleCardHolderChange} required />
+        <label>Card CVV:</label>
+        <input type="number" value={cardCvv} onChange={handleCardCvvChange} required />
         <label>Expiration Date:</label>
         <input type="date" value={cardExpiration} onChange={handleCardExpirationChange} required />
         <br />

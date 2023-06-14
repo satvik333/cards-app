@@ -44,3 +44,17 @@ export async function addNewCard(payload) {
 
   return await makeApiCall(endpoint, method, body);
 }
+
+export async function getCardsData() {
+  const endpoint = '/getcards';
+  const method = 'GET';
+  const body = null;
+  return await makeApiCall(endpoint, method, body);
+}
+
+export async function deleteCard(id) {
+  const endpoint = `/deletecard`;
+  const method = 'DELETE';
+  const body = {id};
+  return await makeApiCall(endpoint, method, body);
+}
