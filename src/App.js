@@ -1,18 +1,20 @@
+import React, { useState } from 'react';
+import Menu from './components/menu';
+import Content from './components/content';
 import './App.css';
-import LoginForm from './components/login';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Register from './components/register';
-import Dashboard from './components/dashboard';
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<LoginForm />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route exact path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
+    <div className="app">
+      <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <Content isOpen={isMenuOpen} />
+    </div>
   );
 }
 

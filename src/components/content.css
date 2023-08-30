@@ -1,0 +1,14 @@
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+  }
+  
+  .content.collapsed {
+    margin-left: 60px;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+  
