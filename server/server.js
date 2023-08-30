@@ -77,7 +77,18 @@ app.delete('/deletecard', async (req, res) => {
   try {
     await Card.deleteOne({_id: req.body.id});
     const cards = await Card.find({});
-    return res.send({ message: 'Successfully fetched the Cards', cards });
+    return res.send({ message: 'Successfully deleted the Cards', cards });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ message: 'Internal server error' });
+  }
+});
+
+app.put('/updatecard', async (req, res) => {
+  try {
+    await Card.findOneAndUpdate({ _id: req.body._id }, req.body);
+    const cards = await Card.find({});
+    return res.send({ message: 'Successfully updated the Cards', cards });
   } catch (error) {
     console.error(error);
     return res.status(500).send({ message: 'Internal server error' });

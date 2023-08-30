@@ -58,3 +58,10 @@ export async function deleteCard(id) {
   const body = {id};
   return await makeApiCall(endpoint, method, body);
 }
+
+export async function updateCard(payload) {
+  const endpoint = `/updatecard`;
+  const method = 'PUT';
+  const body = payload;
+  return await makeApiCall(endpoint, method, body);
+}
