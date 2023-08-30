@@ -1,0 +1,41 @@
+.menu {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    transition: width 0.3s;
+    overflow: hidden;
+  }
+  
+  .menu.expanded {
+    width: 250px;
+  }
+  
+  .menu.collapsed {
+    width: 100px;
+  }
+  
+  .toggle-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .icon {
+    font-size: 24px;
+  }
+  
+  .menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-items li {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
