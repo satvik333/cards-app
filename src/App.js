@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Menu from './components/menu';
 import Content from './components/content';
+import Dashboard from './components/dashboard';
 import './App.css';
 
 function App() {
@@ -12,7 +14,10 @@ function App() {
 
   return (
     <div className="app">
-      <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <Menu toggleMenu={toggleMenu} />
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
       <Content isOpen={isMenuOpen} />
     </div>
   );
