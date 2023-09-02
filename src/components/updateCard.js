@@ -20,14 +20,20 @@ function UpdateCard() {
     fetchData();
   }, []);
 
-  const updateItem = async (item) => {
+  const updateItem = async (item, updatedField, updatedValue) => {
     try {
-      const response = await updateCard(item);
+      const updatedItem = {
+        ...item,
+        [updatedField]: updatedValue,
+      };
+
+      const response = await updateCard(updatedItem);
+
       if (Array.isArray(response.cards)) {
         setData(response.cards);
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error updating data:', error);
     }
   };
 
@@ -36,15 +42,45 @@ function UpdateCard() {
       {data.map((item) => (
         <div key={item._id} className="field-container">
           <label className="field-label">Card Title:</label>
-          <input className="field-input" type="text" value={item.cardTitle} required />
+          <input
+            className="field-input"
+            type="text"
+            value={item.cardTitle}
+            onChange={(e) => updateItem(item, 'cardTitle', e.target.value)}
+            required
+          />
           <label className="field-label">Card Number:</label>
-          <input className="field-input" type="number" value={item.cardNumber} required />
+          <input
+            className="field-input"
+            type="number"
+            value={item.cardNumber}
+            onChange={(e) => updateItem(item, 'cardNumber', e.target.value)}
+            required
+          />
           <label className="field-label">Card Holder Name:</label>
-          <input className="field-input" type="text" value={item.cardHolder} required />
+          <input
+            className="field-input"
+            type="text"
+            value={item.cardHolder}
+            onChange={(e) => updateItem(item, 'cardHolder', e.target.value)}
+            required
+          />
           <label className="field-label">Card CVV:</label>
-          <input className="field-input" type="number" value={item.cardCvv} required />
+          <input
+            className="field-input"
+            type="number"
+            value={item.cardCvv}
+            onChange={(e) => updateItem(item, 'cardCvv', e.target.value)}
+            required
+          />
           <label className="field-label">Expiration Date:</label>
-          <input className="field-input" type="date" value={item.cardExpiration} required />
+          <input
+            className="field-input"
+            type="date"
+            value={item.cardExpiration}
+            onChange={(e) => updateItem(item, 'cardExpiration', e.target.value)}
+            required
+          />
           <br />
           <button onClick={() => updateItem(item)}>Update</button>
         </div>

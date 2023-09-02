@@ -9,7 +9,7 @@ function Content({ isOpen }) {
   const [data, setData] = useState([]);
   const [gridApi, setGridApi] = useState(null);
   const [searchText, setSearchText] = useState('');
-  const [paginationPageSize, setPaginationPageSize] = useState(10);
+  const [paginationPageSize] = useState(10);
   const [paginationCurrentPage, setPaginationCurrentPage] = useState(1);
   const [paginationTotalPages, setPaginationTotalPages] = useState(0);
 
@@ -56,9 +56,22 @@ function Content({ isOpen }) {
     { headerName: 'Card Expiration', field: 'cardExpiration', filter: true },
   ];
 
+  const fetchData = async () => {
+    try {
+      const response = await getCardsData();
+      if (Array.isArray(response.cards)) {
+        setData(response.cards);
+        setPaginationTotalPages(Math.ceil(response.cards.length / paginationPageSize));
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   return (
     <div className={`content ${isOpen ? 'shifted' : ''} ag-theme-alpine`} style={{ height: '400px', width: '100%' }}>
       <h2>Records Count: <span>{data.length}</span></h2>
+      <button onClick={fetchData}>Refresh</button>
       <div className="search-container">
         <input
           type="text"
